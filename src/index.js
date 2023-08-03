@@ -7,11 +7,21 @@ module.exports = function toReadable (number) {
     const numC = num[2];
 
     if (num.length === 3 ){
+        const numBC = [numB, numC].join('');
 
-        return (
-            `${changeNumbToWord(numA)} hundred ${changeNumbToWordTy(numB)} ${numC !== '0' ?
-        changeNumbToWord(numC) : ''}`
-        )
+        if (numBC >= '10' && numBC <= '19'){
+            return (
+                    `${changeNumbToWord(numA)} hundred ${changeNumbToWordTeen(numBC)}`
+                    )
+        } else if (numBC >= '20'){
+            return (
+                    `${changeNumbToWord(numA)} hundred ${changeNumbToWordTy(numB)} ${numC === '0' ? '' : changeNumbToWord(numC)}`
+                )
+        } else if(numBC <= '9'){
+            return (
+                `${changeNumbToWord(numA)} hundred  ${changeNumbToWord(numC)}`
+            )
+        }
     
     } else if ( num.length === 2){
         const joinNum = num.join('');
@@ -69,10 +79,10 @@ module.exports = function toReadable (number) {
         }else if (number === '8'){
             return'eighty' 
         }else if (number === '9'){
-            return'ninty'
+            return'ninety'
         }
     }
-    
+
     function changeNumbToWordTeen (number){
         if (number === '10'){
             return 'ten' ;
