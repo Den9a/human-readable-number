@@ -1,6 +1,7 @@
 module.exports = function toReadable (number) {
     
     let num = String(number).split('') ;
+    let hundred = 'hundred';
     
     const numA = num[0];
     const numB = num[1];
@@ -15,11 +16,11 @@ module.exports = function toReadable (number) {
                     )
         } else if (numBC >= '20'){
             return (
-                    `${changeNumbToWord(numA)} hundred ${changeNumbToWordTy(numB)} ${numC === '0' ? '' : changeNumbToWord(numC)}`
+                    `${changeNumbToWord(numA)} ${hundred} ${changeNumbToWordTy(numB)} ${numC === '0' ? ''.trim() : changeNumbToWord(numC)}`.trim()
                 )
         } else if(numBC <= '9'){
             return (
-                `${changeNumbToWord(numA)} hundred  ${changeNumbToWord(numC)}`
+                `${changeNumbToWord(numA)} hundred ${numC === '0' ? ''.trim() : changeNumbToWord(numC)}`.trim()
             )
         }
     
@@ -28,15 +29,15 @@ module.exports = function toReadable (number) {
         if (number >= 20){
             return (
                 `${changeNumbToWordTy(numA)} ${numB !== '0' ?
-            changeNumbToWord(numB) : ''}`
+            changeNumbToWord(numB) : ''}`.trim()
             )
         } else {
-            return changeNumbToWordTeen(joinNum);
+            return changeNumbToWordTeen(joinNum).trim();
         }
         
         
     } else if (num.length === 1){
-        return changeNumbToWord(numA);
+        return changeNumbToWord(numA).trim();
     }
 
     function changeNumbToWord (number){
